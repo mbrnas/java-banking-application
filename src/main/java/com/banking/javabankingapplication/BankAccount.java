@@ -1,6 +1,7 @@
 package com.banking.javabankingapplication;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 
 /**
  * The BankAccount class represents a banking account with a name and balance.
@@ -20,10 +21,12 @@ public class BankAccount implements AccountActions{
      */
     private final double MAXIMUM_AMOUNT = 10000.0;
 
-    public BankAccount() {
-        this.name = "";
-        this.balance = 0.0;
+    public BankAccount(String name, double balance) {
+        this.name = name;
+        this.balance = balance;
     }
+
+
 
     /**
      * Deposits the specified amount into the account.
