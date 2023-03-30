@@ -9,10 +9,6 @@ import javafx.scene.control.Button;
  */
 public class BankAccount implements AccountActions{
     /**
-     * The name of the account holder.
-     */
-    private String name;
-    /**
      * The current balance of the account.
      */
     private double balance;
@@ -21,8 +17,7 @@ public class BankAccount implements AccountActions{
      */
     private final double MAXIMUM_AMOUNT = 10000.0;
 
-    public BankAccount(String name, double balance) {
-        this.name = name;
+    public BankAccount(double balance) {
         this.balance = balance;
     }
 
@@ -62,22 +57,6 @@ public class BankAccount implements AccountActions{
         else{
             this.balance -= amount;
         }
-    }
-
-    /**
-     * Sets the name of the account holder.
-     * @param name the name of the account holder
-     */
-    public void setName(String name){
-        this.name = name;
-    }
-
-    /**
-     * Returns the name of the account holder.
-     * @return the name of the account holder
-     */
-    public String getName(){
-        return this.name;
     }
 
     /**
