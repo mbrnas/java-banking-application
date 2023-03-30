@@ -17,7 +17,7 @@ public class BankAccount implements AccountActions{
      */
     private final double MAXIMUM_AMOUNT = 10000.0;
 
-    public BankAccount(double balance) {
+    public BankAccount( double balance) {
         this.balance = balance;
     }
 
