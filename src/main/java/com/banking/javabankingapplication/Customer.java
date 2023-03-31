@@ -1,10 +1,5 @@
 package com.banking.javabankingapplication;
 
-import javafx.scene.control.Alert;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.Scanner;
 
 public class Customer {
     private String customerFullName;
@@ -25,7 +20,7 @@ public class Customer {
     }
 
     public Customer(){}
-    Scanner scan = new Scanner(System.in);
+
     public String setCustomerFullName(String fullName) {
 
         if(fullName.matches(regexForNumbers)){
