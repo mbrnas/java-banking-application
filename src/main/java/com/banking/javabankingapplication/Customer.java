@@ -11,6 +11,10 @@ public class Customer {
     private String regexForLetters = "\\D+";
     private String regexForNumbers = "^[a-zA-Z]+$";
 
+    private String regexForPhoneNumbers = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
+
+
+
 
     public Customer(String customerFullName, String phoneNumber, String dateOfBirth, int customerID) {
         this.customerFullName = customerFullName;
