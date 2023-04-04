@@ -13,6 +13,8 @@ public class Customer {
 
     private String regexForPhoneNumbers = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
 
+    private String regexForBirthdays = "^\\d{4}-\\d{2}-\\d{2}$";
+
 
 
 
@@ -25,7 +27,7 @@ public class Customer {
 
     public Customer(){}
 
-    public String setCustomerFullName(String fullName) {
+    public void setCustomerFullName(String fullName) {
 
         if(fullName.matches(regexForNumbers)){
            this.customerFullName = customerFullName;
@@ -38,19 +40,42 @@ public class Customer {
 //            alert.setContentText("Name should not contain numbers!");
             System.out.println("Name should not contain numbers!");
         }
-        return customerFullName;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if(phoneNumber.matches(regexForPhoneNumbers)){
+            this.phoneNumber = phoneNumber;
+        }
+        else{
+              //Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Mistake in input");
+//            alert.setContentText("Phone number not in correct format!");
+            System.out.println("Wrong phone number");
+        }
     }
 
     public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        if(dateOfBirth.matches(regexForBirthdays)){
+            this.dateOfBirth = dateOfBirth;
+        }
+        else{
+            //Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Mistake in input");
+//            alert.setContentText("DOB not in correct format!");
+            System.out.println("DOB not in correct format");
+        }
+
     }
 
     public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+        if(customerID <= 0){
+            System.out.println("CustomerID cannot be 0 or negative!");
+        }
+        else{
+            this.customerID = customerID;
+        }
     }
 
     public String getCustomerFullName() {
