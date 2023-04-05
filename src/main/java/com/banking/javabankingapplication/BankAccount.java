@@ -12,16 +12,12 @@ public class BankAccount implements AccountActions{
      * The current balance of the account.
      */
     private double balance;
-    /**
-     * The maximum amount that can be deposited into the account at one time.
-     */
-    private final double MAXIMUM_AMOUNT = 10000.0;
 
     public BankAccount( double balance) {
         this.balance = balance;
     }
 
-
+    public BankAccount(){}
 
     /**
      * Deposits the specified amount into the account.
@@ -30,6 +26,10 @@ public class BankAccount implements AccountActions{
      */
     @Override
     public void deposit(double amount) {
+        /**
+         * The maximum amount that can be deposited into the account at one time.
+         */
+        final double MAXIMUM_AMOUNT = 10000.0;
         if(amount > MAXIMUM_AMOUNT){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Deposit error");
@@ -63,7 +63,8 @@ public class BankAccount implements AccountActions{
      * Returns the balance of the account.
      * @return the balance of the account
      */
-    public double getBalance(){
-        return this.balance;
+    public void getBalance(){
+        System.out.println(balance);
+        //return this.balance;
     }
 }

@@ -11,11 +11,8 @@ public class Customer {
     private String phoneNumber;
     private String dateOfBirth;
 
-    private int customerID;
+    private String customerAddress;
 
-    //private String regexForPhoneNumbers = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
-
-    private String regexForBirthdays = "^\\d{4}-\\d{2}-\\d{2}$";
 
 
     /**
@@ -24,13 +21,13 @@ public class Customer {
      * @param customerFullName the customer full name
      * @param phoneNumber      the phone number
      * @param dateOfBirth      the date of birth
-     * @param customerID       the customer id
+     * @param customerAddress  customers address
      */
-    public Customer(String customerFullName, String phoneNumber, String dateOfBirth, int customerID) {
+    public Customer(String customerFullName, String phoneNumber, String dateOfBirth, String customerAddress) {
         this.customerFullName = customerFullName;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
-        this.customerID = customerID;
+        this.customerAddress = customerAddress;
     }
 
     /**
@@ -94,26 +91,10 @@ public class Customer {
 
     }
 
-    /**
-     * Sets customer id.
-     *
-     * @param customerID the customer id
-     */
-    public void setCustomerID(String customerID) {
-        try {
-            int custID = Integer.parseInt(customerID);
-            if(custID <= 0 && customerID.matches("\\d+")){
-                System.out.println("CustomerID cannot be 0 or negative!");
-            }
-            else{
-               // System.out.println("CustomerID: " + customerID);
-                this.customerID = Integer.parseInt(customerID);
-            }
-        }
-        catch (NumberFormatException exception){
-            System.out.println("Dont put letters");
-        }
+    public void setCustomerAddress(String customerAddress){
+       this.customerAddress = customerAddress;
     }
+
 
     /**
      * Gets customer full name.
@@ -145,13 +126,10 @@ public class Customer {
         return dateOfBirth;
     }
 
-    /**
-     * Gets customer id.
-     *
-     * @return the customer id
-     */
-    public int getCustomerID() {
-        System.out.println(customerID);
-        return customerID;
+    public String getCustomerAddress() {
+        return customerAddress;
     }
+
+
+
 }
