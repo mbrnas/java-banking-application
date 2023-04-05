@@ -127,9 +127,12 @@ public class Customer {
     }
 
     public String getCustomerAddress() {
+        System.out.println(customerAddress);
         return customerAddress;
     }
 
-
+    public String getCustomerInfo(){
+        return getCustomerFullName() + getCustomerAddress() + getPhoneNumber() + getDateOfBirth();
+    }
 
 }
