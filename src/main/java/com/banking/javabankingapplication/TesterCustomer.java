@@ -8,7 +8,7 @@ public class TesterCustomer {
         customer.setPhoneNumber("12345678");
         customer.setDateOfBirth("2015-12-11");
         customer.getCustomerInfo();
-
+        //test
 
     }
 }
