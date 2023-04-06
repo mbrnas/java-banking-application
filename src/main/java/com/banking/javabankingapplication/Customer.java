@@ -102,8 +102,7 @@ public class Customer {
      * @return the customer full name
      */
     public String getCustomerFullName() {
-        System.out.println(customerFullName);
-        return customerFullName;
+       return customerFullName;
     }
 
     /**

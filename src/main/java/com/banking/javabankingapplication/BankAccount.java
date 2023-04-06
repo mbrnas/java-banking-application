@@ -1,43 +1,46 @@
 package com.banking.javabankingapplication;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+
+import java.math.BigDecimal;
 
 /**
  * The BankAccount class represents a banking account with a name and balance.
  * It implements the AccountActions interface, which defines deposit and withdraw methods.
  */
-public class BankAccount implements AccountActions{
+public class BankAccount{
     /**
      * The current balance of the account.
      */
-    private double balance;
+    private BigDecimal balance;
 
-    public BankAccount( double balance) {
+    public BankAccount(BigDecimal balance) {
         this.balance = balance;
     }
 
-    public BankAccount(){}
+    public BankAccount(){
+        this.balance = BigDecimal.ZERO;
+    }
 
     /**
      * Deposits the specified amount into the account.
      * If the amount exceeds the maximum amount, an error Alert is shown.
      * @param amount the amount to deposit
      */
-    @Override
-    public void deposit(double amount) {
+
+    public void deposit(BigDecimal amount) {
         /**
          * The maximum amount that can be deposited into the account at one time.
          */
-        final double MAXIMUM_AMOUNT = 10000.0;
-        if(amount > MAXIMUM_AMOUNT){
+        final BigDecimal MAXIMUM_AMOUNT = new BigDecimal("10000.0");
+        if(amount.compareTo(MAXIMUM_AMOUNT) > 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Deposit error");
             alert.setHeaderText("Mistake in deposit action!");
             alert.setContentText("Amount for deposit cannot be more than 10000");
         }
         else{
-            this.balance += amount;
+            this.balance = this.balance.add(amount);
         }
     }
 
@@ -46,16 +49,16 @@ public class BankAccount implements AccountActions{
      * If the amount exceeds the account balance, an error Alert is shown.
      * @param amount the amount to withdraw
      */
-    @Override
-    public void withdraw(double amount) {
-        if(amount > balance){
+
+    public void withdraw(BigDecimal amount) {
+        if(amount.compareTo(this.balance) > 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Mistake in withdraw action!");
             alert.setContentText("You do not have enough funds in your account");
         }
         else{
-            this.balance -= amount;
+            this.balance = this.balance.subtract(amount);
         }
     }
 
@@ -63,8 +66,8 @@ public class BankAccount implements AccountActions{
      * Returns the balance of the account.
      * @return the balance of the account
      */
-    public void getBalance(){
+    public BigDecimal getAccountBalance(){
         System.out.println(balance);
-        //return this.balance;
+        return this.balance;
     }
 }

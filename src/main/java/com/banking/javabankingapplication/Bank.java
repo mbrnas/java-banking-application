@@ -53,11 +53,19 @@ public class Bank {
      *
      * @return the string
      */
-    public String getWholeCustomerInfo(){
-        String customerInfo = customer.toString();
-        String accountInfo = account.toString();
-        String ibanInfo = iban.toString();
+    public String getWholeCustomerInfo() {
+        String customerInfo = "Customer Information:\n" +
+                "Name: " + customer.getCustomerFullName() + "\n" +
+                "Address: " + customer.getCustomerAddress() + "\n";
 
-        return customerInfo + " " + accountInfo + " " + ibanInfo;
+        String accountInfo = "Bank Account Information:\n" +
+                "Current Balance: " + account.getAccountBalance() + "\n";
+
+
+        String ibanInfo = "IBAN Information:\n" +
+                "IBAN: " + iban.generateIBAN() + "\n";
+
+        return customerInfo + accountInfo + ibanInfo;
     }
+
 }
