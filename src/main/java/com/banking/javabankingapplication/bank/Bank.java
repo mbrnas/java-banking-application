@@ -1,4 +1,8 @@
-package com.banking.javabankingapplication;
+package com.banking.javabankingapplication.bank;
+
+import com.banking.javabankingapplication.customer.Customer;
+import com.banking.javabankingapplication.iban.IBAN;
+import com.banking.javabankingapplication.bankaccount.BankAccount;
 
 /**
  * The type Bank.

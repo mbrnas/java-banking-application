@@ -1,6 +1,8 @@
-package com.banking.javabankingapplication;
+package com.banking.javabankingapplication.bank;
 
-import java.math.BigDecimal;
+import com.banking.javabankingapplication.customer.Customer;
+import com.banking.javabankingapplication.iban.IBAN;
+import com.banking.javabankingapplication.bankaccount.BankAccount;
 
 public class BankTester {
     public static void main(String[] args) {

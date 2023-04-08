@@ -1,7 +1,7 @@
 /**
  * The IBAN class represents an International Bank Account Number.
  */
-package com.banking.javabankingapplication;
+package com.banking.javabankingapplication.iban;
 
 import java.util.Locale;
 import java.util.Random;

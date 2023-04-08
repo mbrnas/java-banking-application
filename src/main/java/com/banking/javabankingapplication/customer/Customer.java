@@ -1,4 +1,4 @@
-package com.banking.javabankingapplication;
+package com.banking.javabankingapplication.customer;
 
 
 import javafx.scene.control.Alert;
