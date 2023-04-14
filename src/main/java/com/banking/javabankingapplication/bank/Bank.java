@@ -4,9 +4,7 @@ import com.banking.javabankingapplication.customer.Customer;
 import com.banking.javabankingapplication.iban.IBAN;
 import com.banking.javabankingapplication.bankaccount.BankAccount;
 
-/**
- * The type Bank.
- */
+
 public class Bank {
     private BankAccount account;
     private Customer customer;
@@ -25,29 +23,14 @@ public class Bank {
         this.iban = iban;
     }
 
-    /**
-     * Get account bank account.
-     *
-     * @return the bank account
-     */
     public BankAccount getAccount(){
         return account;
     }
 
-    /**
-     * Get customer customer.
-     *
-     * @return the customer
-     */
     public Customer getCustomer(){
         return customer;
     }
 
-    /**
-     * Gets iban.
-     *
-     * @return the iban
-     */
     public IBAN getIban() {
         return iban;
     }

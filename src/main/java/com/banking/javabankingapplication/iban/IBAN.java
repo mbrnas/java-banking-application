@@ -7,24 +7,15 @@ import java.util.Locale;
 import java.util.Random;
 
 public class IBAN {
-    /**
-     * The country code for the IBAN.
-     */
+
     private  final String COUNTRY_CODE = "HR";
 
-    /**
-     * The two-digit country number for the IBAN.
-     */
+
     private final String COUNTRY_NUMBER = "89";
 
-    /**
-     * The eight-digit bank number for the IBAN.
-     */
+
     private final String BANK_NUMBER = "2484008";
 
-    /**
-     * Constructs a new IBAN object.
-     */
     public IBAN() {
         generateIBAN();
     }
