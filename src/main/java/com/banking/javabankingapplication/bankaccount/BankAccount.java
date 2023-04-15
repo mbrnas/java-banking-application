@@ -59,6 +59,11 @@ public class BankAccount{
         }
     }
 
+    public void transferFunds(BankAccount bankAccount, BigDecimal amount){
+        bankAccount.deposit(amount);
+        this.balance = this.balance.subtract(amount);
+    }
+
     /**
      * Returns the balance of the account.
      * @return the balance of the account
