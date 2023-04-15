@@ -111,7 +111,7 @@ public class Customer {
      * @return the phone number
      */
     public String getPhoneNumber() {
-        System.out.println(phoneNumber);
+        //System.out.println(phoneNumber);
         return phoneNumber;
     }
 
@@ -121,12 +121,12 @@ public class Customer {
      * @return the date of birth
      */
     public String getDateOfBirth() {
-        System.out.println(dateOfBirth);
+        //System.out.println(dateOfBirth);
         return dateOfBirth;
     }
 
     public String getCustomerAddress() {
-        System.out.println(customerAddress);
+        //System.out.println(customerAddress);
         return customerAddress;
     }
 

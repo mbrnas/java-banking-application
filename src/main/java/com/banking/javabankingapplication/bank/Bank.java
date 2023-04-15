@@ -43,16 +43,19 @@ public class Bank {
     public String getWholeCustomerInfo() {
         String customerInfo = "Customer Information:\n" +
                 "Name: " + customer.getCustomerFullName() + "\n" +
-                "Address: " + customer.getCustomerAddress() + "\n";
+                "Address: " + customer.getCustomerAddress() + "\n" +
+                "Phone: " + customer.getPhoneNumber() + "\n" +
+                "Date of Birth: " + customer.getDateOfBirth() + "\n";
+
 
         String accountInfo = "Bank Account Information:\n" +
                 "Current Balance: " + account.getAccountBalance() + "\n";
 
 
-        String ibanInfo = "IBAN Information:\n" +
-                "IBAN: " + iban.generateIBAN() + "\n";
-
+        String ibanInfo = "IBAN Information:\n" + iban.generateIBAN() + "\n";
+        System.out.println(customerInfo + accountInfo + ibanInfo);
         return customerInfo + accountInfo + ibanInfo;
+
     }
 
 }

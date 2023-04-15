@@ -23,7 +23,7 @@ public class IBAN {
     public String generateIBAN(){
         String randomNumber = generateRandomNumber();
         String iban =  COUNTRY_CODE + COUNTRY_NUMBER + BANK_NUMBER + randomNumber;
-        System.out.println(iban);
+        //System.out.println(iban);
         return iban;
     }
 

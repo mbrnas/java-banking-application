@@ -9,9 +9,6 @@ import java.math.BigDecimal;
  * It implements the AccountActions interface, which defines deposit and withdraw methods.
  */
 public class BankAccount{
-    /**
-     * The current balance of the account.
-     */
     private BigDecimal balance;
 
     public BankAccount(BigDecimal balance) {
@@ -67,7 +64,7 @@ public class BankAccount{
      * @return the balance of the account
      */
     public BigDecimal getAccountBalance(){
-        System.out.println(balance);
+        //System.out.println(balance);
         return this.balance;
     }
 }
