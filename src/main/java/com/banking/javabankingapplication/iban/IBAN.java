@@ -9,13 +9,8 @@ import java.util.Random;
 public class IBAN {
 
     private  final String COUNTRY_CODE = "HR";
-
-
     private final String COUNTRY_NUMBER = "89";
-
-
     private final String BANK_NUMBER = "2484008";
-
     public IBAN() {
         generateIBAN();
     }
