@@ -1,4 +1,4 @@
-package com.banking.javabankingapplication;
+package com.banking.javabankingapplication.customer;
 
 
 import javafx.scene.control.Alert;
@@ -43,7 +43,7 @@ public class Customer {
     public void setCustomerFullName(String fullName) {
 
         if(fullName.matches("^[a-zA-Z]+ [a-zA-Z]+$")){
-           this.customerFullName = fullName;
+            this.customerFullName = fullName;
             //System.out.println(fullName);
         }
         else{
@@ -63,7 +63,7 @@ public class Customer {
     public void setPhoneNumber(String phoneNumber) {
         if (!phoneNumber.matches("\\d+")) {
             System.out.println("Wrong phone number format!");
-                // or throw an exception, display an error message, etc.
+            // or throw an exception, display an error message, etc.
         } else {
             //System.out.println(phoneNumber);
             this.phoneNumber = phoneNumber;
@@ -92,7 +92,7 @@ public class Customer {
     }
 
     public void setCustomerAddress(String customerAddress){
-       this.customerAddress = customerAddress;
+        this.customerAddress = customerAddress;
     }
 
 
@@ -102,7 +102,6 @@ public class Customer {
      * @return the customer full name
      */
     public String getCustomerFullName() {
-        System.out.println(customerFullName);
         return customerFullName;
     }
 
