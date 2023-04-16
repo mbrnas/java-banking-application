@@ -105,7 +105,7 @@ public class BankAccount{
      * @return the balance of the account
      */
     public BigDecimal getAccountBalance(){
-        //System.out.println(balance);
+        System.out.println(balance);
         return this.balance;
     }
 }

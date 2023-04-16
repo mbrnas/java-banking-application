@@ -4,11 +4,15 @@ import com.banking.javabankingapplication.customer.Customer;
 import com.banking.javabankingapplication.iban.IBAN;
 import com.banking.javabankingapplication.bankaccount.BankAccount;
 
+import java.util.UUID;
+
 
 public class Bank {
     private BankAccount account;
     private Customer customer;
     private IBAN iban;
+
+    private int bankAccountID = 0;
 
     /**
      * Instantiates a new Bank.
@@ -21,6 +25,7 @@ public class Bank {
         this.account = account;
         this.customer = customer;
         this.iban = iban;
+        this.bankAccountID = Math.abs(UUID.randomUUID().hashCode());
     }
 
     public BankAccount getAccount(){
@@ -34,6 +39,12 @@ public class Bank {
     public IBAN getIban() {
         return iban;
     }
+
+    public int getAccountID(){
+        return bankAccountID;
+    }
+
+
 
     /**
      * Get whole customer info string.

@@ -1,11 +1,15 @@
 package com.banking.javabankingapplication.bankaccount;
 
+import com.banking.javabankingapplication.management.BankAccountManager;
+
 import java.math.BigDecimal;
+
 
 public class BankAccTester {
     public static void main(String[] args) {
         BankAccount bankAccount = new BankAccount();
         BankAccount bankAccount1 = new BankAccount();
+
 
         BigDecimal depositeAmount = new BigDecimal("100.0");
         bankAccount.deposit(depositeAmount);
@@ -17,5 +21,8 @@ public class BankAccTester {
 
         bankAccount.getAccountBalance();
         bankAccount1.getAccountBalance();
+
+
+
     }
 }
