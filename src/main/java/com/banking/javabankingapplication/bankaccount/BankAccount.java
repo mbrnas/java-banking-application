@@ -10,6 +10,12 @@ import java.math.BigDecimal;
  */
 public class BankAccount{
     private BigDecimal balance;
+    private int numOfDeposits;
+    private int numOfWithdraws;
+
+    private final BigDecimal MINIMUM_BALANCE = new BigDecimal("10.00");
+
+    private final BigDecimal MAXIMUM_AMOUNT = new BigDecimal("10000.0");
 
     public BankAccount(BigDecimal balance) {
         this.balance = balance;
@@ -29,7 +35,7 @@ public class BankAccount{
         /**
          * The maximum amount that can be deposited into the account at one time.
          */
-        final BigDecimal MAXIMUM_AMOUNT = new BigDecimal("10000.0");
+
         if(amount.compareTo(MAXIMUM_AMOUNT) > 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Deposit error");
@@ -37,8 +43,25 @@ public class BankAccount{
             alert.setContentText("Amount for deposit cannot be more than 10000");
         }
         else{
+            if(amount.compareTo(MINIMUM_BALANCE) < 0){
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Deposit error");
+//                alert.setHeaderText("Mistake in deposit action!");
+//                alert.setContentText("Amount for deposit cannot be less than " + MINIMUM_BALANCE.toString());
+//                alert.showAndWait();
+                System.out.println("Minimum amount for deposit is " + MINIMUM_BALANCE);
+            }
+
             this.balance = this.balance.add(amount);
+            numOfDeposits++;
+
+            if (numOfDeposits > 50) {
+                System.out.println("Too many deposits");
+            }
+
         }
+
+
     }
 
     /**
@@ -54,8 +77,21 @@ public class BankAccount{
             alert.setHeaderText("Mistake in withdraw action!");
             alert.setContentText("You do not have enough funds in your account");
         }
-        else{
-            this.balance = this.balance.subtract(amount);
+         else {
+            BigDecimal remainingBalance = this.balance.subtract(amount);
+            if(remainingBalance.compareTo(MINIMUM_BALANCE) < 0){
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setTitle("Warning");
+//                alert.setHeaderText("Low balance alert");
+//                alert.setContentText("Your remaining balance will be less than the minimum balance");
+//                alert.showAndWait();
+                System.out.println("MINIMUM BALANCE IS REQ");
+            }
+            this.balance = remainingBalance;
+            numOfWithdraws++;
+            if(numOfWithdraws > 50) {
+                System.out.println("Number of withdraws is too much");
+            }
         }
     }
 
@@ -69,7 +105,7 @@ public class BankAccount{
      * @return the balance of the account
      */
     public BigDecimal getAccountBalance(){
-        //System.out.println(balance);
+        System.out.println(balance);
         return this.balance;
     }
 }

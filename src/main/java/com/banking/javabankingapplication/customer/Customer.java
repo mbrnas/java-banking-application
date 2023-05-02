@@ -131,7 +131,7 @@ public class Customer {
     }
 
     public String getCustomerInfo(){
-        return getCustomerFullName() + getCustomerAddress() + getPhoneNumber() + getDateOfBirth();
+        return getCustomerFullName() + " " + getCustomerAddress() + " " + getPhoneNumber() + " " + getDateOfBirth();
     }
 
 }
