@@ -35,6 +35,7 @@ public class BankUserTester {
         customer2.setDateOfBirth("2015-12-03");
         bankAccount2.deposit(new BigDecimal("2000"));
         BankUser user2 = new BankUser(bankAccount2, customer2, iban2);
+        bankAccount2.withdraw(new BigDecimal("200"));
         bankUserList.add(user2);
         user2.printUser();
     }
