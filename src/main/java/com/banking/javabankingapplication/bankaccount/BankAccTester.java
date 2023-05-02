@@ -1,6 +1,5 @@
 package com.banking.javabankingapplication.bankaccount;
 
-import com.banking.javabankingapplication.management.BankAccountManager;
 
 import java.math.BigDecimal;
 
