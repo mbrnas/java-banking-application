@@ -1,27 +1,28 @@
 package com.banking.javabankingapplication.bankaccount;
 
 
+import com.banking.javabankingapplication.logger.TransactionLogger;
+
+import java.io.IOException;
 import java.math.BigDecimal;
 
 
 public class BankAccTester {
     public static void main(String[] args) {
-        BankAccount bankAccount = new BankAccount();
-        BankAccount bankAccount1 = new BankAccount();
+        try {
+            TransactionLogger transactionLogger = new TransactionLogger("transaction.log");
+            BankAccount bankAccount = new BankAccount(BigDecimal.ZERO, transactionLogger);
 
+            BigDecimal depositAmount = new BigDecimal("1000.0");
+            bankAccount.deposit(depositAmount);
 
-        BigDecimal depositeAmount = new BigDecimal("100.0");
-        bankAccount.deposit(depositeAmount);
-
-        bankAccount.getAccountBalance();
-
-        BigDecimal transferedAmount = new BigDecimal("99");
-        bankAccount.transferFunds(bankAccount1, transferedAmount);
-
-        bankAccount.getAccountBalance();
-        bankAccount1.getAccountBalance();
-
-
-
+            BigDecimal withdrawAmount = new BigDecimal("200");
+            bankAccount.withdraw(withdrawAmount);
+            transactionLogger.close();
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 }
+
+
