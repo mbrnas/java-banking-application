@@ -41,19 +41,17 @@ public class Customer {
      * @param fullName the full name
      */
     public void setCustomerFullName(String fullName) {
-
         if(fullName.matches("^[a-zA-Z]+ [a-zA-Z]+$")){
             this.customerFullName = fullName;
-            //System.out.println(fullName);
-        }
-        else{
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Error");
-//            alert.setHeaderText("Mistake in input");
-//            alert.setContentText("Name should not contain numbers!");
-            System.out.println("Name should not contain numbers!");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid input");
+            alert.setContentText("Name should not contain numbers!");
+            alert.showAndWait();
         }
     }
+
 
     /**
      * Sets phone number.

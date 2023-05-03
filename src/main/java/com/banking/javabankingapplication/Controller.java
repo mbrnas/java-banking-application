@@ -34,6 +34,7 @@ public class Controller {
     }
 
     @FXML
+
     private void createAccount() {
         // create account with the input fields
         String name = nameField.getText();
@@ -41,7 +42,25 @@ public class Controller {
         String dob = dobField.getText();
         String phone = phoneField.getText();
 
-        Customer customer = new Customer(name, address, dob, phone);
+        // create a new customer object
+        Customer customer = new Customer();
+
+        // set the customer data using the setters of the Customer class
+        try {
+            customer.setCustomerFullName(name);
+            customer.setCustomerAddress(address);
+            customer.setDateOfBirth(dob);
+            customer.setPhoneNumber(phone);
+        } catch (IllegalArgumentException e) {
+            // display an error message if any data is invalid
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid input");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
+        }
+
         // do something with the created customer object
         //System.out.println(customer.getCustomerInfo());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -50,5 +69,6 @@ public class Controller {
         alert.setContentText(customer.getCustomerInfo());
         alert.showAndWait();
     }
+
 
 }
