@@ -14,7 +14,10 @@ public class Controller {
     private Text headerText;
 
     @FXML
-    private TextArea nameField;
+    private TextArea firstNameField;
+
+    @FXML
+    private TextArea lastNameField;
 
     @FXML
     private TextArea addressField;
@@ -33,24 +36,32 @@ public class Controller {
         // initialize the controller
     }
 
-    @FXML
 
+
+    @FXML
     private void createAccount() {
-        // create account with the input fields
-        String name = nameField.getText();
+        // get the input fields
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
         String address = addressField.getText();
         String dob = dobField.getText();
         String phone = phoneField.getText();
 
         // create a new customer object
-        Customer customer = new Customer();
+        Customer customer = new Customer(firstName, lastName, phone, dob, address);
 
-        // set the customer data using the setters of the Customer class
+        // check if all input fields are valid
         try {
-            customer.setCustomerFullName(name);
+            customer.setCustomerFirstName(firstName);
+            customer.setCustomerLastName(lastName);
             customer.setCustomerAddress(address);
             customer.setDateOfBirth(dob);
             customer.setPhoneNumber(phone);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Your data");
+            alert.setContentText(customer.getCustomerInfo());
+            alert.showAndWait();
         } catch (IllegalArgumentException e) {
             // display an error message if any data is invalid
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -61,13 +72,8 @@ public class Controller {
             return;
         }
 
-        // do something with the created customer object
-        //System.out.println(customer.getCustomerInfo());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText("Your data");
-        alert.setContentText(customer.getCustomerInfo());
-        alert.showAndWait();
+        // display the customer data if all input fields are valid
+
     }
 
 

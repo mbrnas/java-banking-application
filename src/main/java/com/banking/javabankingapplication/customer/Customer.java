@@ -7,7 +7,10 @@ import javafx.scene.control.Alert;
  * The type Customer.
  */
 public class Customer {
-    private String customerFullName;
+    private String customerFirstName;
+
+    private String customerLastName;
+
     private String phoneNumber;
     private String dateOfBirth;
 
@@ -17,40 +20,43 @@ public class Customer {
 
     /**
      * Instantiates a new Customer.
-     *
-     * @param customerFullName the customer full name
      * @param phoneNumber      the phone number
      * @param dateOfBirth      the date of birth
      * @param customerAddress  customers address
      */
-    public Customer(String customerFullName, String phoneNumber, String dateOfBirth, String customerAddress) {
-        this.customerFullName = customerFullName;
+    public Customer(String customerFirstName, String customerLastName , String phoneNumber, String dateOfBirth, String customerAddress) {
+        this.customerFirstName = customerFirstName;
+        this.customerLastName = customerLastName;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.customerAddress = customerAddress;
     }
 
-    /**
-     * Instantiates a new Customer.
-     */
-    public Customer(){}
-
-    /**
-     * Sets customer full name.
-     *
-     * @param fullName the full name
-     */
-    public void setCustomerFullName(String fullName) {
-        if(fullName.matches("^[a-zA-Z]+ [a-zA-Z]+$")){
-            this.customerFullName = fullName;
+    public void setCustomerFirstName(String firstName) {
+        if(firstName.matches("^[a-zA-Z]+\\S[a-zA-Z]+$")){
+            this.customerFirstName = firstName;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Invalid input");
-            alert.setContentText("Name should not contain numbers!");
+            alert.setContentText("First name should not contain numbers!");
             alert.showAndWait();
         }
     }
+
+    public void setCustomerLastName(String lastName) {
+        if(lastName.matches("^[a-zA-Z]+\\S[a-zA-Z]+$")){
+            this.customerLastName = lastName;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid input");
+            alert.setContentText("Last name should not contain numbers!");
+            alert.showAndWait();
+        }
+    }
+
+
 
 
     /**
@@ -59,11 +65,14 @@ public class Customer {
      * @param phoneNumber the phone number
      */
     public void setPhoneNumber(String phoneNumber) {
-        if (!phoneNumber.matches("\\d+")) {
-            System.out.println("Wrong phone number format!");
-            // or throw an exception, display an error message, etc.
-        } else {
-            //System.out.println(phoneNumber);
+        if(phoneNumber.matches("^[a-zA-Z]+ [a-zA-Z]+$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid input");
+            alert.setContentText("Phone number should not contain letters!");
+            alert.showAndWait();
+        }
+        else {
             this.phoneNumber = phoneNumber;
         }
     }
@@ -75,16 +84,15 @@ public class Customer {
      * @param dateOfBirth the date of birth
      */
     public void setDateOfBirth(String dateOfBirth) {
-        if(dateOfBirth.matches("^\\d{4}-\\d{2}-\\d{2}$")){
+        if(dateOfBirth.matches("^\\d{4}/\\d{2}/\\d{2}$")){
             this.dateOfBirth = dateOfBirth;
-            //System.out.println(dateOfBirth);
         }
         else{
-            //Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Error");
-//            alert.setHeaderText("Mistake in input");
-//            alert.setContentText("DOB not in correct format!");
-            System.out.println("DOB not in correct format, needs to be YYYY-MM-DD");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Mistake in input");
+            alert.setContentText("DOB needs to be YYYY/MM/DD!");
+            alert.showAndWait();
         }
 
     }
@@ -99,8 +107,12 @@ public class Customer {
      *
      * @return the customer full name
      */
-    public String getCustomerFullName() {
-        return customerFullName;
+    public String getCustomerFirstName() {
+        return customerFirstName;
+    }
+
+    public String getCustomerLastName() {
+        return customerLastName;
     }
 
     /**
@@ -129,7 +141,7 @@ public class Customer {
     }
 
     public String getCustomerInfo(){
-        return getCustomerFullName() + " " + getCustomerAddress() + " " + getPhoneNumber() + " " + getDateOfBirth();
+        return getCustomerFirstName()+ " " + getCustomerLastName() + " " + getCustomerAddress() + " " + getPhoneNumber() + " " + getDateOfBirth();
     }
 
 }
