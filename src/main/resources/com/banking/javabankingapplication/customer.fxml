@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.banking.javabankingapplication.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.banking.javabankingapplication.CustomerController">
    <bottom>
       <AnchorPane prefHeight="500.0" prefWidth="707.0" style="-fx-background-color: #05BFDB;" BorderPane.alignment="CENTER">
          <children>
@@ -56,6 +56,7 @@
                </font>
             </Text>
             <TextArea fx:id="lastNameField" layoutX="35.0" layoutY="183.0" prefHeight="19.0" prefWidth="200.0" promptText="&quot;Doe&quot;" />
+            <Button layoutX="429.0" layoutY="289.0" mnemonicParsing="false" onAction="#switchToScene2" text="Switch Scene" />
          </children></AnchorPane>
    </bottom>
 </BorderPane>
