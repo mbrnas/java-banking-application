@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.banking.javabankingapplication.CustomerController">
+   <bottom>
+      <AnchorPane prefHeight="500.0" prefWidth="707.0" style="-fx-background-color: #05BFDB;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" layoutX="37.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="firstNameField" layoutX="36.0" layoutY="109.0" prefHeight="19.0" prefWidth="200.0" promptText="&quot;John&quot; " />
+            <Text fill="WHITE" layoutX="37.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="236.2109375">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="37.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="236.2109375">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="addressField" layoutX="35.0" layoutY="261.0" prefHeight="40.0" prefWidth="200.0" promptText="&quot;123 Boulevard&quot; " />
+            <Text fill="WHITE" layoutX="37.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="236.2109375">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="phoneField" layoutX="36.0" layoutY="338.0" prefHeight="40.0" prefWidth="200.0" promptText="097/637/882" />
+            <Text fill="WHITE" layoutX="39.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth" wrappingWidth="236.2109375">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="dobField" layoutX="38.0" layoutY="422.0" prefHeight="40.0" prefWidth="200.0" promptText="1992/8/15" />
+            <Text fill="#656262" layoutX="387.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEBEX BANK">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Text>
+            <Button fx:id="createAccountButton" contentDisplay="CENTER" layoutX="417.0" layoutY="189.0" mnemonicParsing="false" onAction="#createAccount" text="Create Account">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Text fill="WHITE" layoutX="38.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="236.2109375">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="lastNameField" layoutX="35.0" layoutY="183.0" prefHeight="19.0" prefWidth="200.0" promptText="&quot;Doe&quot;" />
+            <Button layoutX="429.0" layoutY="289.0" mnemonicParsing="false" onAction="#switchToScene2" text="Switch Scene" />
+         </children></AnchorPane>
+   </bottom>
+</BorderPane>

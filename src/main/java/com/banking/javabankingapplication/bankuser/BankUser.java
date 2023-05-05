@@ -22,7 +22,7 @@ public class BankUser {
     List<BankUser> bankUserList = new ArrayList<>();
 
     public void printUser() {
-        System.out.println("Customer name: " + customer.getCustomerFullName());
+        System.out.println("Customer name: " + customer.getCustomerFirstName());
         System.out.println("Customer address: " + customer.getCustomerAddress());
         System.out.println("Phone number: " + customer.getPhoneNumber());
         System.out.println("Date of birth: " + customer.getDateOfBirth());

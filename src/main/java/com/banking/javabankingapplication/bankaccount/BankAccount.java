@@ -1,7 +1,9 @@
 package com.banking.javabankingapplication.bankaccount;
 
+import com.banking.javabankingapplication.logger.TransactionLogger;
 import javafx.scene.control.Alert;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 /**
@@ -9,6 +11,7 @@ import java.math.BigDecimal;
  * It implements the AccountActions interface, which defines deposit and withdraw methods.
  */
 public class BankAccount{
+    private TransactionLogger transactionLogger;
     private BigDecimal balance;
     private int numOfDeposits;
     private int numOfWithdraws;
@@ -17,13 +20,16 @@ public class BankAccount{
 
     private final BigDecimal MAXIMUM_AMOUNT = new BigDecimal("10000.0");
 
-    public BankAccount(BigDecimal balance) {
+    public BankAccount(BigDecimal balance,  TransactionLogger transactionLogger) throws IOException {
         this.balance = balance;
+        this.transactionLogger = new TransactionLogger("transaction.log");
     }
 
     public BankAccount(){
         this.balance = BigDecimal.ZERO;
     }
+
+
 
     /**
      * Deposits the specified amount into the account.
@@ -59,6 +65,7 @@ public class BankAccount{
                 System.out.println("Too many deposits");
             }
 
+            transactionLogger.logDeposit(amount);
         }
 
 
@@ -79,7 +86,7 @@ public class BankAccount{
         }
          else {
             BigDecimal remainingBalance = this.balance.subtract(amount);
-            if(remainingBalance.compareTo(MINIMUM_BALANCE) < 0){
+            if (remainingBalance.compareTo(MINIMUM_BALANCE) < 0) {
 //                Alert alert = new Alert(Alert.AlertType.WARNING);
 //                alert.setTitle("Warning");
 //                alert.setHeaderText("Low balance alert");
@@ -89,10 +96,11 @@ public class BankAccount{
             }
             this.balance = remainingBalance;
             numOfWithdraws++;
-            if(numOfWithdraws > 50) {
+            if (numOfWithdraws > 50) {
                 System.out.println("Number of withdraws is too much");
             }
         }
+        transactionLogger.logWithdrawal(amount);
     }
 
     public void transferFunds(BankAccount bankAccount, BigDecimal amount){
