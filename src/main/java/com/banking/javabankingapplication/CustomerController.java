@@ -44,13 +44,15 @@ public class CustomerController {
     }
 
 
-    public void switchToScene2(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(HelloApplication.class.getResource("banking-view.fxml"));
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+    @FXML
+    private void switchToBankingScene(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("banking-view.fxml"));
         Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     private void createAccount() {
         // get the input fields

@@ -20,7 +20,7 @@ public class BankAccount{
 
     private final BigDecimal MAXIMUM_DEPOSIT_AMOUNT = new BigDecimal("10000.0");
 
-    public BankAccount(BigDecimal balance,  TransactionLogger transactionLogger) throws IOException {
+    public BankAccount(BigDecimal balance, TransactionLogger transactionLogger) throws IOException {
         this.balance = balance;
         this.transactionLogger = new TransactionLogger("transaction.log");
     }

@@ -56,7 +56,8 @@
                </font>
             </Text>
             <TextArea fx:id="lastNameField" layoutX="35.0" layoutY="183.0" prefHeight="19.0" prefWidth="200.0" promptText="&quot;Doe&quot;" />
-            <Button layoutX="465.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchToScene2" text="Next" />
+            <Button text="Switch to Banking Scene" onAction="#switchToBankingScene" />
+
          </children></AnchorPane>
    </center>
 </BorderPane>
