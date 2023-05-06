@@ -18,7 +18,7 @@ public class BankAccount{
 
     private final BigDecimal MINIMUM_BALANCE = new BigDecimal("10.00");
 
-    private final BigDecimal MAXIMUM_AMOUNT = new BigDecimal("10000.0");
+    private final BigDecimal MAXIMUM_DEPOSIT_AMOUNT = new BigDecimal("10000.0");
 
     public BankAccount(BigDecimal balance,  TransactionLogger transactionLogger) throws IOException {
         this.balance = balance;
@@ -38,37 +38,30 @@ public class BankAccount{
      */
 
     public void deposit(BigDecimal amount) {
-        /**
-         * The maximum amount that can be deposited into the account at one time.
-         */
-
-        if(amount.compareTo(MAXIMUM_AMOUNT) > 0){
+        if(amount.compareTo(MAXIMUM_DEPOSIT_AMOUNT) > 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Deposit error");
             alert.setHeaderText("Mistake in deposit action!");
-            alert.setContentText("Amount for deposit cannot be more than 10000");
+            alert.setContentText("Amount for deposit cannot be more than 10,000");
         }
-        else{
-            if(amount.compareTo(MINIMUM_BALANCE) < 0){
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setTitle("Deposit error");
-//                alert.setHeaderText("Mistake in deposit action!");
-//                alert.setContentText("Amount for deposit cannot be less than " + MINIMUM_BALANCE.toString());
-//                alert.showAndWait();
-                System.out.println("Minimum amount for deposit is " + MINIMUM_BALANCE);
-            }
+        else if(amount.compareTo(MINIMUM_BALANCE) < 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Deposit error");
+            alert.setHeaderText("Mistake in deposit action!");
+            alert.setContentText("Amount for deposit cannot be less than 10,00!");
+            alert.showAndWait();
+        }
 
-            this.balance = this.balance.add(amount);
-            numOfDeposits++;
-
-            if (numOfDeposits > 50) {
+        else if (numOfDeposits > 50) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Deposit error");
+                alert.setHeaderText("Mistake in deposit action!");
+                alert.setContentText("You deposited over your limit!");
                 System.out.println("Too many deposits");
             }
-
+            this.balance = this.balance.add(amount);
+            numOfDeposits++;
             transactionLogger.logDeposit(amount);
-        }
-
-
     }
 
     /**
@@ -78,30 +71,34 @@ public class BankAccount{
      */
 
     public void withdraw(BigDecimal amount) {
-        if(amount.compareTo(this.balance) > 0){
+        if (amount.compareTo(this.balance) > 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Mistake in withdraw action!");
             alert.setContentText("You do not have enough funds in your account");
         }
-         else {
+        else {
             BigDecimal remainingBalance = this.balance.subtract(amount);
             if (remainingBalance.compareTo(MINIMUM_BALANCE) < 0) {
-//                Alert alert = new Alert(Alert.AlertType.WARNING);
-//                alert.setTitle("Warning");
-//                alert.setHeaderText("Low balance alert");
-//                alert.setContentText("Your remaining balance will be less than the minimum balance");
-//                alert.showAndWait();
-                System.out.println("MINIMUM BALANCE IS REQ");
-            }
-            this.balance = remainingBalance;
-            numOfWithdraws++;
-            if (numOfWithdraws > 50) {
-                System.out.println("Number of withdraws is too much");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Low balance alert");
+                alert.setContentText("Your remaining balance will be less than the minimum balance");
+                alert.showAndWait();
+            } else if (numOfWithdraws > 5) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Exceeded amount of withdraws");
+                alert.setContentText("You have exceeded your withdrawal limit!");
+                alert.showAndWait();
+            } else {
+                this.balance = remainingBalance;
+                numOfWithdraws++;
+                transactionLogger.logWithdrawal(amount);
             }
         }
-        transactionLogger.logWithdrawal(amount);
     }
+
 
     public void transferFunds(BankAccount bankAccount, BigDecimal amount){
         bankAccount.deposit(amount);
@@ -113,7 +110,6 @@ public class BankAccount{
      * @return the balance of the account
      */
     public BigDecimal getAccountBalance(){
-        System.out.println(balance);
         return this.balance;
     }
 }
