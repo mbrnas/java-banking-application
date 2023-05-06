@@ -25,7 +25,10 @@ public class BankingController extends Application {
     private Label balanceLabel;
 
     private BankAccount bankAccount;
+    @FXML
+    private void initialize(){
 
+    }
     @Override
     public void start(Stage primaryStage) throws IOException {
 
@@ -36,24 +39,25 @@ public class BankingController extends Application {
         depositButton.setOnAction(event -> handleDeposit());
         withdrawButton.setOnAction(event -> handleWithdraw());
 
-        // create scene and show stage
-        // ...
-
     }
 
     private void handleDeposit() {
-        BigDecimal amount = new BigDecimal(depositAmountTextField.getText());
+        String input = depositAmountTextField.getText();
+        BigDecimal amount = new BigDecimal(input);
         bankAccount.deposit(amount);
         balanceLabel.setText(bankAccount.getAccountBalance().toString());
         depositAmountTextField.clear();
+        System.out.println("HELLO");
     }
 
     private void handleWithdraw() {
-        BigDecimal amount = new BigDecimal(withdrawAmountTextField.getText());
+        String input = withdrawAmountTextField.getText();
+        BigDecimal amount = new BigDecimal(input);
         bankAccount.withdraw(amount);
         balanceLabel.setText(bankAccount.getAccountBalance().toString());
         withdrawAmountTextField.clear();
     }
+
 
     public static void main(String[] args) {
         launch(args);
