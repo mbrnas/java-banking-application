@@ -25,9 +25,6 @@ public class BankAccount{
         this.transactionLogger = new TransactionLogger("transaction.log");
     }
 
-    public BankAccount(){
-        this.balance = BigDecimal.ZERO;
-    }
 
 
 
@@ -52,12 +49,12 @@ public class BankAccount{
             alert.showAndWait();
         }
 
-        else if (numOfDeposits > 50) {
+        else if (numOfDeposits == 5) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Deposit error");
                 alert.setHeaderText("Mistake in deposit action!");
-                alert.setContentText("You deposited over your limit!");
-                System.out.println("Too many deposits");
+                alert.setContentText("You deposited over your allowed limit!");
+                alert.showAndWait();
             }
             this.balance = this.balance.add(amount);
             numOfDeposits++;
@@ -76,6 +73,7 @@ public class BankAccount{
             alert.setTitle("Error");
             alert.setHeaderText("Mistake in withdraw action!");
             alert.setContentText("You do not have enough funds in your account");
+            alert.showAndWait();
         }
         else {
             BigDecimal remainingBalance = this.balance.subtract(amount);
@@ -85,6 +83,7 @@ public class BankAccount{
                 alert.setHeaderText("Low balance alert");
                 alert.setContentText("Your remaining balance will be less than the minimum balance");
                 alert.showAndWait();
+                this.balance = remainingBalance;
             } else if (numOfWithdraws > 5) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
