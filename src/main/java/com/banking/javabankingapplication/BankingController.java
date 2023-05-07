@@ -1,6 +1,7 @@
 package com.banking.javabankingapplication;
 
 import com.banking.javabankingapplication.bankaccount.BankAccount;
+import com.banking.javabankingapplication.iban.IBAN;
 import com.banking.javabankingapplication.logger.TransactionLogger;
 
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 
 public class BankingController {
     private BankAccount bankAccount;
+    private IBAN iban;
 
     @FXML
     private Button depositButton;
@@ -22,12 +24,15 @@ public class BankingController {
     @FXML
     private Label balanceLabel;
     @FXML
+    private Label ibanLabel;
+    @FXML
     private TextField depositAmountTextField;
     @FXML
     private TextField withdrawAmountTextField;
 
     public BankingController() throws IOException {
         bankAccount = new BankAccount(BigDecimal.TEN, new TransactionLogger("report.log"));
+        iban = new IBAN();
     }
 
     @FXML
@@ -35,6 +40,7 @@ public class BankingController {
         depositButton.setOnAction(event -> handleDeposit());
         withdrawButton.setOnAction(event -> handleWithdraw());
         balanceLabel.setText(bankAccount.getAccountBalance().toString());
+        ibanLabel.setText(iban.generateIBAN());
     }
 
     private void handleDeposit() {
