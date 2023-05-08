@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.banking.javabankingapplication.CustomerController">
-   <bottom>
+   <center>
       <AnchorPane prefHeight="500.0" prefWidth="707.0" style="-fx-background-color: #05BFDB;" BorderPane.alignment="CENTER">
          <children>
             <Text fill="WHITE" layoutX="37.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account">
@@ -40,12 +40,12 @@
                </font>
             </Text>
             <TextArea fx:id="dobField" layoutX="38.0" layoutY="422.0" prefHeight="40.0" prefWidth="200.0" promptText="1992/8/15" />
-            <Text fill="#656262" layoutX="387.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEBEX BANK">
+            <Text layoutX="376.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEBEX BANK">
                <font>
-                  <Font size="37.0" />
+                  <Font name="Consolas" size="40.0" />
                </font>
             </Text>
-            <Button fx:id="createAccountButton" contentDisplay="CENTER" layoutX="417.0" layoutY="189.0" mnemonicParsing="false" onAction="#createAccount" text="Create Account">
+            <Button fx:id="createAccountButton" contentDisplay="CENTER" layoutX="417.0" layoutY="208.0" mnemonicParsing="false" onAction="#createAccount" text="Create Account">
                <font>
                   <Font size="17.0" />
                </font>
@@ -56,7 +56,8 @@
                </font>
             </Text>
             <TextArea fx:id="lastNameField" layoutX="35.0" layoutY="183.0" prefHeight="19.0" prefWidth="200.0" promptText="&quot;Doe&quot;" />
-            <Button layoutX="429.0" layoutY="289.0" mnemonicParsing="false" onAction="#switchToScene2" text="Switch Scene" />
+            <Button text="Switch to Banking Scene" onAction="#switchToBankingScene" />
+
          </children></AnchorPane>
-   </bottom>
+   </center>
 </BorderPane>

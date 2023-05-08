@@ -14,7 +14,7 @@ public class BankUserTester {
         List<BankUser> bankUserList = new ArrayList<>();
         //Customer customer = new Customer();
         IBAN iban = new IBAN();
-        BankAccount bankAccount = new BankAccount(); // initialize the bank account separately
+        //BankAccount bankAccount = new BankAccount(); // initialize the bank account separately
 //
 //        customer.setCustomerFullName("Matija Brnas");
 //        customer.setCustomerAddress("Jarun");

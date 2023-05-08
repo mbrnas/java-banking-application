@@ -18,6 +18,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("MEBEX Bank");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
