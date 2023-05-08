@@ -51,6 +51,7 @@ public class CustomerController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     @FXML
@@ -84,7 +85,6 @@ public class CustomerController {
             alert.setHeaderText("Invalid input");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-            return;
         }
 
         // display the customer data if all input fields are valid

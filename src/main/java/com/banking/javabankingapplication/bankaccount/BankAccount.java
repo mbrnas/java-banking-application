@@ -19,7 +19,7 @@ public class BankAccount{
 
     private final BigDecimal MINIMUM_BALANCE = new BigDecimal("10.00");
 
-    private final BigDecimal MAXIMUM_DEPOSIT_AMOUNT = new BigDecimal("10000.0");
+    private final BigDecimal MAXIMUM_DEPOSIT_AMOUNT = new BigDecimal("10000");
 
     private final BigDecimal MINIMUM_DEPOSIT_AMOUNT = new BigDecimal("10");
 
@@ -52,16 +52,18 @@ public class BankAccount{
             alert.showAndWait();
         }
 
-        else if (numOfDeposits >= 5) {
+        else if (numOfDeposits == 5) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Deposit error");
                 alert.setHeaderText("Mistake in deposit action!");
                 alert.setContentText("You deposited over your allowed limit!");
                 alert.showAndWait();
             }
+        else{
             this.balance = this.balance.add(amount);
             numOfDeposits++;
             transactionLogger.logDeposit(amount);
+        }
     }
 
     /**
