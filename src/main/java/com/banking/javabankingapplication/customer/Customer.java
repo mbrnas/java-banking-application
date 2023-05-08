@@ -31,7 +31,9 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
         this.customerAddress = customerAddress;
     }
+    public Customer(){
 
+    }
     public void setCustomerFirstName(String firstName) {
         if(firstName.matches("^[a-zA-Z]+\\S[a-zA-Z]+$")){
             this.customerFirstName = firstName;

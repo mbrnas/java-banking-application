@@ -1,5 +1,6 @@
 package com.banking.javabankingapplication;
 
+import com.banking.javabankingapplication.dbconnection.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class CustomerController {
+    private DatabaseHandler handler;
 
     @FXML
     private Text headerText;
@@ -56,40 +58,36 @@ public class CustomerController {
 
     @FXML
     private void createAccount() {
-        // get the input fields
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        String address = addressField.getText();
-        String dob = dobField.getText();
-        String phone = phoneField.getText();
+        String firstName = firstNameField.getText().trim();
+        String lastName = lastNameField.getText().trim();
+        String address = addressField.getText().trim();
+        String dob = dobField.getText().trim();
+        String phone = phoneField.getText().trim();
+        handler = new DatabaseHandler();
+        // Perform data validation here
 
-        // create a new customer object
+        // Create a new Customer object with the user's input
         Customer customer = new Customer(firstName, lastName, phone, dob, address);
 
-        // check if all input fields are valid
-        try {
-            customer.setCustomerFirstName(firstName);
-            customer.setCustomerLastName(lastName);
-            customer.setCustomerAddress(address);
-            customer.setDateOfBirth(dob);
-            customer.setPhoneNumber(phone);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("Your data");
-            alert.setContentText(customer.getCustomerInfo());
-            alert.showAndWait();
-        } catch (IllegalArgumentException e) {
-            // display an error message if any data is invalid
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Invalid input");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-        }
+        // Call the createUser() method to save the user to the database
+        handler.insertCustomer(customer.getCustomerFirstName(), customer.getCustomerLastName(), customer.getPhoneNumber(),
+                customer.getDateOfBirth(), customer.getCustomerAddress());
 
-        // display the customer data if all input fields are valid
+        // Display a success message to the user
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success!");
+        alert.setHeaderText(null);
+        alert.setContentText("Your account has been created successfully.");
+        alert.showAndWait();
 
+        // Clear the input fields
+        firstNameField.setText("");
+        lastNameField.setText("");
+        addressField.setText("");
+        dobField.setText("");
+        phoneField.setText("");
     }
+
 
 
 }
