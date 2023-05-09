@@ -1,8 +1,11 @@
 package com.banking.javabankingapplication.controllers;
 
+import java.io.IOException;
+
+import com.banking.javabankingapplication.customer.Customer;
 import com.banking.javabankingapplication.customer.CustomerValidator;
 import com.banking.javabankingapplication.dbconnection.DatabaseHandler;
-import javafx.application.Application;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,14 +15,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import com.banking.javabankingapplication.customer.Customer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Objects;
-
-public class CustomerController extends Application {
+public class CustomerController {
     private DatabaseHandler handler;
 
     @FXML
@@ -60,7 +59,6 @@ public class CustomerController extends Application {
         window.show();
     }
 
-
     @FXML
     private void createAccount(ActionEvent event) throws IOException {
         String firstName = firstNameField.getText().trim();
@@ -68,63 +66,44 @@ public class CustomerController extends Application {
         String address = addressField.getText().trim();
         String dob = dobField.getText().trim();
         String phone = phoneField.getText().trim();
-        handler = new DatabaseHandler();
 
         // Perform data validation here
         CustomerValidator validator = new CustomerValidator();
 
         if(!validator.checkFirstName(firstName)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in input!");
-            alert.setContentText("First name cant have numbers!");
-            alert.showAndWait();
+            showAlert("Error in input!", "First name cant have numbers!");
             firstNameField.setText("");
             return;
         }
 
         if(!validator.checkLastName(lastName)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in input!");
-            alert.setContentText("Last name cant have numbers!");
-            alert.showAndWait();
+            showAlert("Error in input!", "Last name cant have numbers!");
             lastNameField.setText("");
             return;
         }
 
         if(!validator.checkPhoneNumber(phone)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in input!");
-            alert.setContentText("Phone needs to be in format +385012020!");
-            alert.showAndWait();
+            showAlert("Error in input!", "Phone needs to be in format +385012020!");
             phoneField.setText("");
             return;
         }
 
         if(!validator.checkDateOfBirth(dob)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in input!");
-            alert.setContentText("Date of birth needs to be YYYY-DD-MM!");
-            alert.showAndWait();
+            showAlert("Error in input!", "Date of birth needs to be YYYY-DD-MM!");
             dobField.setText("");
             return;
         }
 
-
         // Create a new Customer object with the user's input
         Customer customer = new Customer(firstName, lastName, phone, dob, address);
 
-
-
-        // Call the createUser() method to save the user to the database
+        // Save the customer to the database
+        handler = new DatabaseHandler();
         handler.insertCustomer(customer.getCustomerFirstName(), customer.getCustomerLastName(), customer.getPhoneNumber(),
                 customer.getDateOfBirth(), customer.getCustomerAddress());
 
         // Display a success message to the user
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success!");
-        alert.setHeaderText(null);
-        alert.setContentText("Your account has been created successfully.");
-        alert.showAndWait();
+        showAlert("Success!", "Your account has been created successfully.");
 
         // Clear the input fields
         firstNameField.setText("");
@@ -132,13 +111,16 @@ public class CustomerController extends Application {
         addressField.setText("");
         dobField.setText("");
         phoneField.setText("");
-        switchToBankingScene(event);
 
+        // Navigate to banking scene
+        switchToBankingScene(event);
     }
 
-
-    @Override
-    public void start(Stage stage) throws Exception {
-
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText("You will now be directed to the banking screen!");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
