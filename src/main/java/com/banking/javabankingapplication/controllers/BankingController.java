@@ -32,7 +32,6 @@ public class BankingController {
 
     public BankingController() throws IOException {
         bankAccount = new BankAccount(BigDecimal.TEN, new TransactionLogger("report.log"));
-        iban = new IBAN();
     }
 
     @FXML
@@ -40,7 +39,6 @@ public class BankingController {
         depositButton.setOnAction(event -> handleDeposit());
         withdrawButton.setOnAction(event -> handleWithdraw());
         balanceLabel.setText(bankAccount.getAccountBalance().toString());
-        ibanLabel.setText(iban.generateIBAN());
     }
 
     private void handleDeposit() {

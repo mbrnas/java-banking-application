@@ -1,10 +1,11 @@
 package com.banking.javabankingapplication.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.banking.javabankingapplication.customer.Customer;
 import com.banking.javabankingapplication.customer.CustomerValidator;
-import com.banking.javabankingapplication.dbconnection.DatabaseHandler;
+import com.banking.javabankingapplication.dbconnection.CustomerDataSender;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CustomerController {
-    private DatabaseHandler handler;
+    private CustomerDataSender handler;
 
     @FXML
     private Text headerText;
@@ -42,6 +43,8 @@ public class CustomerController {
     @FXML
     private Button createAccountButton;
 
+    private Customer customer;
+
     @FXML
     private void initialize() {
         // initialize the controller
@@ -60,7 +63,7 @@ public class CustomerController {
     }
 
     @FXML
-    private void createAccount(ActionEvent event) throws IOException {
+    private void createAccount(ActionEvent event) throws IOException, SQLException {
         String firstName = firstNameField.getText().trim();
         String lastName = lastNameField.getText().trim();
         String address = addressField.getText().trim();
@@ -95,12 +98,13 @@ public class CustomerController {
         }
 
         // Create a new Customer object with the user's input
-        Customer customer = new Customer(firstName, lastName, phone, dob, address);
+        customer = new Customer(firstName, lastName, phone, dob, address);
+
 
         // Save the customer to the database
-        handler = new DatabaseHandler();
-        handler.insertCustomer(customer.getCustomerFirstName(), customer.getCustomerLastName(), customer.getPhoneNumber(),
-                customer.getDateOfBirth(), customer.getCustomerAddress());
+        handler = new CustomerDataSender();
+        handler.addCustomerAndIban(customer.getCustomerFirstName(), customer.getCustomerLastName(), customer.getPhoneNumber(),
+                customer.getDateOfBirth(), customer.getCustomerAddress(), customer.getIBAN());
 
         // Display a success message to the user
         showAlert("Success!", "Your account has been created successfully.");
