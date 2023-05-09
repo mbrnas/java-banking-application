@@ -1,7 +1,12 @@
 package com.banking.javabankingapplication.controllers;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
+import com.banking.javabankingapplication.customer.Customer;
 import com.banking.javabankingapplication.customer.CustomerValidator;
-import com.banking.javabankingapplication.dbconnection.DatabaseHandler;
+import com.banking.javabankingapplication.dbconnection.CustomerDataSender;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,14 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import com.banking.javabankingapplication.customer.Customer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class CustomerController {
-    private DatabaseHandler handler;
+    private CustomerDataSender handler;
 
     @FXML
     private Text headerText;
@@ -41,6 +43,8 @@ public class CustomerController {
     @FXML
     private Button createAccountButton;
 
+    private Customer customer;
+
     @FXML
     private void initialize() {
         // initialize the controller
@@ -48,79 +52,62 @@ public class CustomerController {
 
     @FXML
     private void switchToBankingScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("banking-view.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-        stage.setResizable(false);
+        Parent bankingViewParent = FXMLLoader.load(getClass().getResource("/com/banking/javabankingapplication/banking-view.fxml"));
+        Scene bankingViewScene = new Scene(bankingViewParent);
+
+        // Get the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(bankingViewScene);
+        window.show();
     }
 
-
     @FXML
-    private void createAccount() {
+    private void createAccount(ActionEvent event) throws IOException, SQLException {
         String firstName = firstNameField.getText().trim();
         String lastName = lastNameField.getText().trim();
         String address = addressField.getText().trim();
         String dob = dobField.getText().trim();
         String phone = phoneField.getText().trim();
-        handler = new DatabaseHandler();
 
         // Perform data validation here
         CustomerValidator validator = new CustomerValidator();
 
         if(!validator.checkFirstName(firstName)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in input!");
-            alert.setContentText("First name cant have numbers!");
-            alert.showAndWait();
+            showAlert("Error in input!", "First name cant have numbers!");
             firstNameField.setText("");
             return;
         }
 
         if(!validator.checkLastName(lastName)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in input!");
-            alert.setContentText("Last name cant have numbers!");
-            alert.showAndWait();
+            showAlert("Error in input!", "Last name cant have numbers!");
             lastNameField.setText("");
             return;
         }
 
         if(!validator.checkPhoneNumber(phone)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in input!");
-            alert.setContentText("Phone needs to be in format +385012020!");
-            alert.showAndWait();
+            showAlert("Error in input!", "Phone needs to be in format +385012020!");
             phoneField.setText("");
             return;
         }
 
         if(!validator.checkDateOfBirth(dob)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in input!");
-            alert.setContentText("Date of birth needs to be YYYY-DD-MM!");
-            alert.showAndWait();
+            showAlert("Error in input!", "Date of birth needs to be YYYY-DD-MM!");
             dobField.setText("");
             return;
         }
 
-
         // Create a new Customer object with the user's input
-        Customer customer = new Customer(firstName, lastName, phone, dob, address);
+        customer = new Customer(firstName, lastName, phone, dob, address);
 
 
-
-        // Call the createUser() method to save the user to the database
-        handler.insertCustomer(customer.getCustomerFirstName(), customer.getCustomerLastName(), customer.getPhoneNumber(),
-                customer.getDateOfBirth(), customer.getCustomerAddress());
+        // Save the customer to the database
+        handler = new CustomerDataSender();
+        handler.addCustomerAndIban(customer.getCustomerFirstName(), customer.getCustomerLastName(), customer.getPhoneNumber(),
+                customer.getDateOfBirth(), customer.getCustomerAddress(), customer.getIBAN());
 
         // Display a success message to the user
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success!");
-        alert.setHeaderText(null);
-        alert.setContentText("Your account has been created successfully.");
-        alert.showAndWait();
+        showAlert("Success!", "Your account has been created successfully.");
 
         // Clear the input fields
         firstNameField.setText("");
@@ -128,8 +115,16 @@ public class CustomerController {
         addressField.setText("");
         dobField.setText("");
         phoneField.setText("");
+
+        // Navigate to banking scene
+        switchToBankingScene(event);
     }
 
-
-
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText("You will now be directed to the banking screen!");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

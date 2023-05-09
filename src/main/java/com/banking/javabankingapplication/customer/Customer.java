@@ -1,6 +1,7 @@
 package com.banking.javabankingapplication.customer;
 
 
+import com.banking.javabankingapplication.iban.IBAN;
 import javafx.scene.control.Alert;
 
 /**
@@ -16,7 +17,7 @@ public class Customer {
 
     private String customerAddress;
 
-
+    private IBAN iban;
 
     /**
      * Instantiates a new Customer.
@@ -30,6 +31,7 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.customerAddress = customerAddress;
+        iban = new IBAN();
     }
 
 
@@ -69,5 +71,9 @@ public class Customer {
         return customerAddress;
     }
 
+    public String getIBAN(){
+       // System.out.println(iban.generateIBAN());
+        return iban.getIBAN();
 
+    }
 }

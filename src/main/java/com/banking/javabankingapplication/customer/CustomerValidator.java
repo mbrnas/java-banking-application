@@ -15,6 +15,7 @@ public class CustomerValidator {
 
     public boolean checkPhoneNumber(String phoneNumber){
         return (!phoneNumber.matches("^\\d+$\n"));
+
     }
 
     public boolean checkDateOfBirth(String dateOfBirth){

@@ -43,6 +43,7 @@ public class BankAccount{
             alert.setTitle("Deposit error");
             alert.setHeaderText("Mistake in deposit action!");
             alert.setContentText("Amount for deposit cannot be more than 10,000");
+            alert.showAndWait();
         }
         else if(amount.compareTo(MINIMUM_DEPOSIT_AMOUNT) < 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
