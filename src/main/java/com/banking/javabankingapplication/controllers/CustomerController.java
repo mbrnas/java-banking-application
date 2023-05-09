@@ -2,6 +2,7 @@ package com.banking.javabankingapplication.controllers;
 
 import com.banking.javabankingapplication.customer.CustomerValidator;
 import com.banking.javabankingapplication.dbconnection.DatabaseHandler;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +17,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
-public class CustomerController {
+public class CustomerController extends Application {
     private DatabaseHandler handler;
 
     @FXML
@@ -48,17 +50,19 @@ public class CustomerController {
 
     @FXML
     private void switchToBankingScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("banking-view.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-        stage.setResizable(false);
+        Parent bankingViewParent = FXMLLoader.load(getClass().getResource("/com/banking/javabankingapplication/banking-view.fxml"));
+        Scene bankingViewScene = new Scene(bankingViewParent);
+
+        // Get the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(bankingViewScene);
+        window.show();
     }
 
 
     @FXML
-    private void createAccount() {
+    private void createAccount(ActionEvent event) throws IOException {
         String firstName = firstNameField.getText().trim();
         String lastName = lastNameField.getText().trim();
         String address = addressField.getText().trim();
@@ -128,8 +132,13 @@ public class CustomerController {
         addressField.setText("");
         dobField.setText("");
         phoneField.setText("");
+        switchToBankingScene(event);
+
     }
 
 
+    @Override
+    public void start(Stage stage) throws Exception {
 
+    }
 }
