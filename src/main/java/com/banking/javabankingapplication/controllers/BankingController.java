@@ -1,4 +1,4 @@
-package com.banking.javabankingapplication;
+package com.banking.javabankingapplication.controllers;
 
 import com.banking.javabankingapplication.bankaccount.BankAccount;
 import com.banking.javabankingapplication.iban.IBAN;

@@ -1,5 +1,6 @@
-package com.banking.javabankingapplication;
+package com.banking.javabankingapplication.controllers;
 
+import com.banking.javabankingapplication.customer.CustomerValidator;
 import com.banking.javabankingapplication.dbconnection.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +46,6 @@ public class CustomerController {
         // initialize the controller
     }
 
-
     @FXML
     private void switchToBankingScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("banking-view.fxml"));
@@ -56,6 +56,7 @@ public class CustomerController {
         stage.setResizable(false);
     }
 
+
     @FXML
     private void createAccount() {
         String firstName = firstNameField.getText().trim();
@@ -64,10 +65,51 @@ public class CustomerController {
         String dob = dobField.getText().trim();
         String phone = phoneField.getText().trim();
         handler = new DatabaseHandler();
+
         // Perform data validation here
+        CustomerValidator validator = new CustomerValidator();
+
+        if(!validator.checkFirstName(firstName)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error in input!");
+            alert.setContentText("First name cant have numbers!");
+            alert.showAndWait();
+            firstNameField.setText("");
+            return;
+        }
+
+        if(!validator.checkLastName(lastName)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error in input!");
+            alert.setContentText("Last name cant have numbers!");
+            alert.showAndWait();
+            lastNameField.setText("");
+            return;
+        }
+
+        if(!validator.checkPhoneNumber(phone)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error in input!");
+            alert.setContentText("Phone needs to be in format +385012020!");
+            alert.showAndWait();
+            phoneField.setText("");
+            return;
+        }
+
+        if(!validator.checkDateOfBirth(dob)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error in input!");
+            alert.setContentText("Date of birth needs to be YYYY-DD-MM!");
+            alert.showAndWait();
+            dobField.setText("");
+            return;
+        }
+
 
         // Create a new Customer object with the user's input
         Customer customer = new Customer(firstName, lastName, phone, dob, address);
+
+
 
         // Call the createUser() method to save the user to the database
         handler.insertCustomer(customer.getCustomerFirstName(), customer.getCustomerLastName(), customer.getPhoneNumber(),

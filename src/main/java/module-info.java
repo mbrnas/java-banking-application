@@ -7,4 +7,6 @@ module com.banking.javabankingapplication {
 
     opens com.banking.javabankingapplication to javafx.fxml;
     exports com.banking.javabankingapplication;
+    exports com.banking.javabankingapplication.controllers;
+    opens com.banking.javabankingapplication.controllers to javafx.fxml;
 }
