@@ -60,7 +60,12 @@ public class LoginController {
 
 
     @FXML
-    private void handleRegisterButton(ActionEvent event) {
-
+    private void handleRegisterButton(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/banking/javabankingapplication/registration.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
+
 }
