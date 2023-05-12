@@ -1,6 +1,8 @@
 package com.banking.javabankingapplication.controllers;
 
 
+import com.banking.javabankingapplication.dbconnection.LoginDataSender;
+import com.mysql.cj.log.Log;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -15,26 +17,32 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LoginController {
+   private LoginDataSender loginSender;
 
     @FXML
-    private TextField usernameField = new TextField();
+    private TextField usernameField;
 
     @FXML
     private Button loginButton;
 
     @FXML
-    private TextField passwordField = new TextField();
+    private TextField passwordField;
 
     @FXML
     private Button registerButton;
 
+
+
     @FXML
     private void handleLoginButton(ActionEvent event) {
-        // Code to handle login button action
+        loginSender = new LoginDataSender();
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText().trim();
+        loginSender.authenticateUser(username, password);
     }
 
     @FXML
     private void handleRegisterButton(ActionEvent event) {
-        // Code to handle register button action
+
     }
 }
