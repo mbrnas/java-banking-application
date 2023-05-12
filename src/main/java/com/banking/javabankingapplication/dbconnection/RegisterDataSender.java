@@ -43,14 +43,14 @@ public class RegisterDataSender {
         }
     }
 
-    public void insertRegisteredUser(String username, String password, String email){
+    public void insertRegisteredUser(String email, String username, String password){
         ensureConnection();
         try {
-            String sqlReg ="INSERT INTO user_registration(username, password, email) VALUES(?,?,?)";
+            String sqlReg ="INSERT INTO user_registration(email, username, password) VALUES(?,?,?)";
             statement = connection.prepareStatement(sqlReg);
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.setString(3, email);
+            statement.setString(1, email);
+            statement.setString(2, username);
+            statement.setString(3, password);
             statement.executeUpdate();
 
             String sqlAuth = "INSERT INTO user_authentication(username, password) VALUES(?,?)";

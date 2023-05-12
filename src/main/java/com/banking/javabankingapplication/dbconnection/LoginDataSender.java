@@ -59,16 +59,16 @@ public class LoginDataSender {
         try {
             ensureConnection();
             // Connect to database
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+
 
             // Prepare statement
             String query = "SELECT * FROM user_authentication WHERE username = ? AND password = ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, username);
-            stmt.setString(2, password);
+            statement = connection.prepareStatement(query);
+            statement.setString(1, username);
+            statement.setString(2, password);
 
             // Execute query
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = statement.executeQuery();
 
             // Check if there is a matching user
             if (rs.next()) {
@@ -77,8 +77,8 @@ public class LoginDataSender {
 
             // Close resources
             rs.close();
-            stmt.close();
-            conn.close();
+            statement.close();
+            connection.close();
             disconnect();
         } catch (SQLException e) {
             e.printStackTrace();
