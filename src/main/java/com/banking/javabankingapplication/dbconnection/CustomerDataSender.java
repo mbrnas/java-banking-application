@@ -8,7 +8,10 @@ public class CustomerDataSender {
     private Connection connection;
     private PreparedStatement statement;
 
-    private Customer customer;
+    String DB_URL = "jdbc:mysql://localhost:3306/mebex_bank";
+    String DB_USERNAME = "root";
+    String DB_PASSWORD = "[{Matija20}]";
+
 
     public void ensureConnection() {
         if (connection == null) {
@@ -19,9 +22,9 @@ public class CustomerDataSender {
     public void connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/mebex_bank";
-            String username = "root";
-            String password = "[{Matija20}]";
+            String url = DB_URL;
+            String username = DB_USERNAME;
+            String password = DB_PASSWORD;
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,6 +84,8 @@ public class CustomerDataSender {
             e.printStackTrace();
         }
     }
+
+
 
 
 }
