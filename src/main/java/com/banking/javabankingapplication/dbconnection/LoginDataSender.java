@@ -41,55 +41,20 @@ public class LoginDataSender {
         }
     }
 
-    public void disconnect() {
-        try {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
+    private void disconnect() {
+        if (connection != null) {
+            try {
                 connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    public void authenticateUser(String username, String password){
-        ensureConnection();
-        boolean isAuthenticated = validateUserCredentials(username, password);
 
-        if(isAuthenticated){
-            try{
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/banking/javabankingapplication/customer.fxml"));
-                Parent root = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-//                Parent bankingViewParent = FXMLLoader.load(getClass().getResource("/com/banking/javabankingapplication/banking-view.fxml"));
-//                Scene bankingViewScene = new Scene(bankingViewParent);
-//
-//                // Get the Stage information
-//                Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-//
-//                window.setScene(bankingViewScene);
-//                window.show();
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Invalid credentials");
-            alert.setContentText("The username and password you entered do not match our records.");
-            alert.showAndWait();
-        }
-    disconnect();
-    }
-
-    private boolean validateUserCredentials(String username, String password) {
-        boolean isValid = false;
+    public boolean authenticateUser(String username, String password) {
+        boolean isAuthenticated = false;
 
         try {
             // Connect to database
@@ -106,7 +71,7 @@ public class LoginDataSender {
 
             // Check if there is a matching user
             if (rs.next()) {
-                isValid = true;
+                isAuthenticated = true;
             }
 
             // Close resources
@@ -117,8 +82,9 @@ public class LoginDataSender {
             e.printStackTrace();
         }
 
-        return isValid;
+        return isAuthenticated;
     }
+
 
 
 

@@ -16,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class LoginController {
    private LoginDataSender loginSender;
 
@@ -34,12 +36,28 @@ public class LoginController {
 
 
     @FXML
-    private void handleLoginButton(ActionEvent event) {
+    private void handleLoginButton(ActionEvent event) throws IOException {
         loginSender = new LoginDataSender();
         String username = usernameField.getText().trim();
         String password = passwordField.getText().trim();
-        loginSender.authenticateUser(username, password);
+        boolean isAuthenticated = loginSender.authenticateUser(username, password);
+        if (isAuthenticated) {
+            // User is authenticated
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/banking/javabankingapplication/customer.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            // Invalid credentials
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid credentials");
+            alert.setContentText("The username and password you entered do not match our records.");
+            alert.showAndWait();
+        }
     }
+
 
     @FXML
     private void handleRegisterButton(ActionEvent event) {
