@@ -46,7 +46,7 @@ public class RegisterDataSender {
     public void insertRegisteredUser(String username, String password, String email){
         ensureConnection();
         try {
-            String sqlReg ="INSERT INTO user_registration(username, password, email) VALUES(?,?,?,)";
+            String sqlReg ="INSERT INTO user_registration(username, password, email) VALUES(?,?,?)";
             statement = connection.prepareStatement(sqlReg);
             statement.setString(1, username);
             statement.setString(2, password);
