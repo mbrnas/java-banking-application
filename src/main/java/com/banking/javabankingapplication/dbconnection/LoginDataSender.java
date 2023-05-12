@@ -57,6 +57,7 @@ public class LoginDataSender {
         boolean isAuthenticated = false;
 
         try {
+            ensureConnection();
             // Connect to database
             Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
@@ -78,6 +79,7 @@ public class LoginDataSender {
             rs.close();
             stmt.close();
             conn.close();
+            disconnect();
         } catch (SQLException e) {
             e.printStackTrace();
         }
