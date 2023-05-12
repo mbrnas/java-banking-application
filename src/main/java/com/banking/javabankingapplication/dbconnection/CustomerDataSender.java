@@ -8,7 +8,6 @@ public class CustomerDataSender {
     private Connection connection;
     private PreparedStatement statement;
 
-    private Customer customer;
 
     public void ensureConnection() {
         if (connection == null) {
