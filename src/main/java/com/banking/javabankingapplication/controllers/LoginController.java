@@ -43,7 +43,7 @@ public class LoginController {
         boolean isAuthenticated = loginSender.authenticateUser(username, password);
         if (isAuthenticated) {
             // User is authenticated
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/banking/javabankingapplication/customer.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/banking/javabankingapplication/banking-view.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
