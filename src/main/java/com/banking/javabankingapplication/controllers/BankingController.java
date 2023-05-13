@@ -2,7 +2,7 @@ package com.banking.javabankingapplication.controllers;
 
 import com.banking.javabankingapplication.bankaccount.BankAccount;
 import com.banking.javabankingapplication.iban.IBAN;
-import com.banking.javabankingapplication.logger.TransactionLogger;
+
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,14 +28,12 @@ public class BankingController {
     @FXML
     private Label balanceLabel;
     @FXML
-    private Label ibanLabel;
-    @FXML
     private TextField depositAmountTextField;
     @FXML
     private TextField withdrawAmountTextField;
 
-    public BankingController() throws IOException {
-        bankAccount = new BankAccount(BigDecimal.TEN, new TransactionLogger("report.log"));
+    public BankingController() {
+        bankAccount = new BankAccount(BigDecimal.TEN);
     }
 
     @FXML
