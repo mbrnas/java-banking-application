@@ -1,9 +1,8 @@
 package com.banking.javabankingapplication.dbconnection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javafx.scene.control.Alert;
+
+import java.sql.*;
 
 public class RegisterDataSender {
     String DB_URL = "jdbc:mysql://localhost:3306/mebex_bank";
@@ -58,9 +57,22 @@ public class RegisterDataSender {
             statement.setString(1, username);
             statement.setString(2, password);
             statement.executeUpdate();
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            // handle the unique constraint violation
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Mistake!");
+            alert.setHeaderText("Username, password, and email combination not available");
+            alert.setContentText("Please choose a different combination of username, password, and email.");
+            alert.showAndWait();
+        } catch (Exception ex){
+            // handle other exceptions
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error inserting user data");
+            alert.setContentText("There was an error inserting user data into the database.");
+            alert.showAndWait();
         }
+
         disconnect();
     }
 }

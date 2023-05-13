@@ -3,8 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -12,12 +15,24 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="707.0">
          <children>
-            <Pane prefHeight="500.0" prefWidth="152.0" style="-fx-background-color: #F95959;" />
-            <Label fx:id="balanceLabel" layoutX="274.0" layoutY="59.0" text="0.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
+            <Pane prefHeight="500.0" prefWidth="152.0" style="-fx-background-color: #F95959;">
+               <children>
+                  <Text fill="WHITE" layoutX="36.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEBEX ">
+                     <font>
+                        <Font name="Segoe UI" size="24.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="25.0" layoutY="68.0">
+                     <image>
+                        <Image url="@../../../images/home.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="63.0" layoutY="86.0" onMouseClicked="#changeHomeScene" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
+                     <font>
+                        <Font name="Segoe UI" size="17.0" />
+                     </font>
+                  </Text>
+               </children></Pane>
             <Button fx:id="depositButton" layoutX="458.0" layoutY="126.0" mnemonicParsing="false" text="Deposit" />
             <Button fx:id="withdrawButton" layoutX="453.0" layoutY="172.0" mnemonicParsing="false" text="Withdraw" />
             <TextField fx:id="depositAmountTextField" layoutX="293.0" layoutY="128.0" prefHeight="26.0" prefWidth="120.0" />
@@ -30,6 +45,17 @@
                </font>
             </Text>
             <Label fx:id="ibanLabel" layoutX="435.0" layoutY="230.0" minHeight="41.0" prefHeight="41.0" prefWidth="200.0" text="\@iban" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="58.0" layoutX="470.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" width="188.0" />
+            <Label fx:id="balanceLabel" layoutX="609.0" layoutY="33.0" text="0.0">
+               <font>
+                  <Font name="Segoe UI" size="20.0" />
+               </font>
+            </Label>
+            <Text layoutX="487.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:">
+               <font>
+                  <Font name="Segoe UI" size="17.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

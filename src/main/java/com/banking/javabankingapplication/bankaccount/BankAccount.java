@@ -1,6 +1,5 @@
 package com.banking.javabankingapplication.bankaccount;
 
-import com.banking.javabankingapplication.logger.TransactionLogger;
 import javafx.scene.control.Alert;
 
 import java.io.IOException;
@@ -12,7 +11,7 @@ import java.math.BigDecimal;
  */
 public class BankAccount{
 
-    private TransactionLogger transactionLogger;
+
     private BigDecimal balance;
     private int numOfDeposits;
     private int numOfWithdraws;
@@ -23,9 +22,8 @@ public class BankAccount{
 
     private final BigDecimal MINIMUM_DEPOSIT_AMOUNT = new BigDecimal("10");
 
-    public BankAccount(BigDecimal balance, TransactionLogger transactionLogger) throws IOException {
+    public BankAccount(BigDecimal balance) {
         this.balance = balance;
-        this.transactionLogger = new TransactionLogger("transaction.log");
     }
 
 
@@ -63,7 +61,6 @@ public class BankAccount{
         else{
             this.balance = this.balance.add(amount);
             numOfDeposits++;
-            transactionLogger.logDeposit(amount);
         }
     }
 
@@ -96,7 +93,7 @@ public class BankAccount{
         } else {
             this.balance = remainingBalance;
             numOfWithdraws++;
-            transactionLogger.logWithdrawal(amount);
+
         }
     }
 
