@@ -8,20 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="535.0" prefWidth="343.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.banking.javabankingapplication.controllers.RegistrationController">
+<AnchorPane prefHeight="500.0" prefWidth="707.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.banking.javabankingapplication.controllers.RegistrationController">
    <children>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="72.0">
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="425.0" layoutY="126.0">
          <image>
             <Image url="@../../../images/logoMebex.png" />
          </image>
       </ImageView>
-      <Text layoutX="121.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an Account" />
-      <Text layoutX="156.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
-      <Text layoutX="142.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
-      <Text layoutX="144.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-      <TextField fx:id="emailInputField" layoutX="91.0" layoutY="276.0" />
-      <TextField fx:id="usernameInputField" layoutX="91.0" layoutY="341.0" />
-      <PasswordField fx:id="passwordInputField" layoutX="92.0" layoutY="407.0" />
-      <Button fx:id="registerAccount" layoutX="144.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleRegisterButton" text="Create" />
+      <Text layoutX="305.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an Account" />
+      <Text layoutX="161.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
+      <Text layoutX="149.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
+      <Text layoutX="150.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
+      <TextField fx:id="emailInputField" layoutX="102.0" layoutY="126.0" />
+      <TextField fx:id="usernameInputField" layoutX="102.0" layoutY="214.0" />
+      <PasswordField fx:id="passwordInputField" layoutX="102.0" layoutY="301.0" />
+      <Button fx:id="registerAccount" layoutX="151.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleRegisterButton" text="Create" />
    </children>
 </AnchorPane>
