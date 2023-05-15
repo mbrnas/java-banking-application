@@ -37,7 +37,6 @@ public class RegistrationController {
         String password = passwordInputField.getText().trim();
 
         registerDataSender.insertRegisteredUser(emailInput, username, password);
-        showAlert("Success!", "Your account has been created successfully.");
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/banking/javabankingapplication/customer.fxml"));
         Parent root = (Parent) fxmlLoader.load();
@@ -50,11 +49,20 @@ public class RegistrationController {
         passwordInputField.setText("");
     }
 
-    private void showAlert(String title, String message) {
+    public static void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
-        alert.setHeaderText("You will now be directed to the banking screen!");
+        alert.setHeaderText("Registration Success");
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public static void showErrorAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText("Error in registration");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
