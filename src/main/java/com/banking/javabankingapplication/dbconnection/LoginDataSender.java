@@ -12,45 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-public class LoginDataSender {
-    private Connection connection;
-    private PreparedStatement statement;
-
-    String DB_URL = "jdbc:mysql://localhost:3306/mebex_bank";
-    String DB_USERNAME = "root";
-    String DB_PASSWORD = "[{Matija20}]";
-
-
-    public void ensureConnection() {
-        if (connection == null) {
-            connect();
-        }
-    }
-
-    public void connect() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = DB_URL;
-            String username = DB_USERNAME;
-            String password = DB_PASSWORD;
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void disconnect() {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+public class LoginDataSender extends DatabaseConnector{
 
 
     public boolean authenticateUser(String username, String password) {

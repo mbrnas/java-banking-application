@@ -4,43 +4,8 @@ import javafx.scene.control.Alert;
 
 import java.sql.*;
 
-public class RegisterDataSender {
-    String DB_URL = "jdbc:mysql://localhost:3306/mebex_bank";
-    String DB_USERNAME = "root";
-    String DB_PASSWORD = "[{Matija20}]";
+public class RegisterDataSender extends DatabaseConnector{
 
-    private Connection connection;
-
-    private PreparedStatement statement;
-    public void ensureConnection() {
-        if (connection == null) {
-            connect();
-        }
-    }
-
-    public void connect() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = DB_URL;
-            String username = DB_USERNAME;
-            String password = DB_PASSWORD;
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void disconnect() {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     public void insertRegisteredUser(String email, String username, String password){
         ensureConnection();

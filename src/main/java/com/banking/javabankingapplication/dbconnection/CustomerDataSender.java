@@ -4,47 +4,7 @@ import com.banking.javabankingapplication.customer.Customer;
 
 import java.sql.*;
 
-public class CustomerDataSender {
-    private Connection connection;
-    private PreparedStatement statement;
-
-    String DB_URL = "jdbc:mysql://localhost:3306/mebex_bank";
-    String DB_USERNAME = "root";
-    String DB_PASSWORD = "[{Matija20}]";
-
-
-    public void ensureConnection() {
-        if (connection == null) {
-            connect();
-        }
-    }
-
-    public void connect() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = DB_URL;
-            String username = DB_USERNAME;
-            String password = DB_PASSWORD;
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void disconnect() {
-        try {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+public class CustomerDataSender extends DatabaseConnector{
 
     public void addCustomerAndIban(String firstName, String lastName, String phone_number, String date_of_birth, String cust_address, String iban) {
         ensureConnection();
