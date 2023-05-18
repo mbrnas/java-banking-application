@@ -1,7 +1,8 @@
-package com.banking.javabankingapplication.dbconnection;
+package com.banking.javabankingapplication.dbconnection.loginconnection;
 
 
 
+import com.banking.javabankingapplication.dbconnection.DatabaseConnector;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-public class LoginDataSender extends DatabaseConnector{
+public class LoginDataSender extends DatabaseConnector {
 
 
     public boolean authenticateUser(String username, String password) {

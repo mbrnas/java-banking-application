@@ -1,6 +1,6 @@
 package com.banking.javabankingapplication.controllers;
 
-import com.banking.javabankingapplication.dbconnection.RegisterDataSender;
+import com.banking.javabankingapplication.dbconnection.registerconnection.RegisterDataSender;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

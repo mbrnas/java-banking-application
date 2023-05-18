@@ -1,10 +1,11 @@
-package com.banking.javabankingapplication.dbconnection;
+package com.banking.javabankingapplication.dbconnection.customerconnection;
 
 import com.banking.javabankingapplication.customer.Customer;
+import com.banking.javabankingapplication.dbconnection.DatabaseConnector;
 
 import java.sql.*;
 
-public class CustomerDataSender extends DatabaseConnector{
+public class CustomerDataSender extends DatabaseConnector {
 
     public void addCustomerAndIban(String firstName, String lastName, String phone_number, String date_of_birth, String cust_address, String iban) {
         ensureConnection();

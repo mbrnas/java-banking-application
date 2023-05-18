@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import com.banking.javabankingapplication.customer.Customer;
 import com.banking.javabankingapplication.customer.CustomerValidator;
-import com.banking.javabankingapplication.dbconnection.CustomerDataSender;
+import com.banking.javabankingapplication.dbconnection.customerconnection.CustomerDataSender;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

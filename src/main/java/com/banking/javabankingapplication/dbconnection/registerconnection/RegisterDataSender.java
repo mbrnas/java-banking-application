@@ -1,11 +1,12 @@
-package com.banking.javabankingapplication.dbconnection;
+package com.banking.javabankingapplication.dbconnection.registerconnection;
 
 import com.banking.javabankingapplication.controllers.RegistrationController;
+import com.banking.javabankingapplication.dbconnection.DatabaseConnector;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
 
-public class RegisterDataSender extends DatabaseConnector{
+public class RegisterDataSender extends DatabaseConnector {
 
 
     public void insertRegisteredUser(String email, String username, String password) {
